@@ -2,7 +2,7 @@
 
 An incredibly simple toast notification system for React.
 
--   Only 1kb gzipped
+-   Only 894 byte (gzipped)
 -   No dependencies
 -   No styling, only logic
 -   No configuration
