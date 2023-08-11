@@ -37,7 +37,7 @@ import { useToast } from 'buttered-toast'
 
 const Component = () => {
     const { show } = useToast()
-    return <button onClick={() => show(<>Button clicked!</>)}>Click me!</button>
+    return <button onClick={() => show('Button clicked!')}>Click me!</button>
 }
 ```
 
