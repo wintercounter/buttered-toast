@@ -1,0 +1,82 @@
+{
+    "name": "buttered-toast",
+    "version": "1.0.1",
+    "description": "An incredibly simple toast notification solution for React.",
+    "main": "dist/cjs/index.js",
+    "module": "dist/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "config": "mhy config typescript eslint prettier -io",
+        "build": "npm run build:es6 && npm run build:cjs",
+        "build:es6": "mhy bb --mhy-env=prod",
+        "build:cjs": "mhy bb --mhy-env=prod:cjs",
+        "publish": "mhy tsc && npm run build && npm publish"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wintercounter/buttered-toast.git"
+    },
+    "keywords": [
+        "react",
+        "toast",
+        "notification",
+        "simple",
+        "hook",
+        "context",
+        "portal"
+    ],
+    "author": "Viktor Vincze",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/wintercounter/buttered-toast/issues"
+    },
+    "homepage": "https://github.com/wintercounter/buttered-toast#readme",
+    "peerDependencies": {
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0"
+    },
+    "devDependencies": {
+        "prettier": "^3.0.1"
+    },
+    "mhy": {
+        "mhy": {
+            "cjs": {
+                "distFolder": "dist/cjs"
+            }
+        },
+        "babel": {
+            "cjs": {
+                "presets": [
+                    {
+                        "$match": {
+                            "query": "$[?(@[0].includes('preset-env'))]",
+                            "value": [
+                                {
+                                    "$match": {
+                                        "index": 1,
+                                        "value": {
+                                            "modules": "commonjs",
+                                            "targets": {
+                                                "$replace": {
+                                                    "node": true,
+                                                    "esmodules": true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "plugins": [
+                    {
+                        "$prepend": {
+                            "$expression": "$params.require.resolve('babel-plugin-add-module-exports')"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
